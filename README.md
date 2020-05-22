@@ -1,4 +1,4 @@
-# Kube-Ingress Demos
+# Kubernetes ConfigMaps & Secrets Demos
 
 _**Run Kubernetes Cluster Locally**_
 --
@@ -59,7 +59,12 @@ _**Kube-Land Utility Scripts/Tools**_
 - It would also print the **LONG Security Token** on the Console for K8Dash UI Login
 
 - It would also create Kubernetes ConfigMap and Secrets
-
+    - Kubernetes ConfigMap YMLS are under kube-configmap/setup/kube-config/ 
+    - Kubernetes Secrets YMLS are under kube-configmap/setup/kube-secrets/
+    - Spring Boot Applications References Kubernetes ConfigMaps via kube-configmap/apps/accounts/src/main/resources/bootstrap.yml etc. 
+    - Spring Boot Applications References Kubernetes Secrets via Kubernetes Deployment YML accounts-deployment.yml etc. 
+     
+        
 - Once the Command exits with success,
      
     - You can Browse your Spring Boot Admin (SBA) Console on --> 
