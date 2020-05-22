@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2020-04-02T17:58:13Z"
+  name: kube-mongo-config
+  namespace: kube-green
+  resourceVersion: "19400"
+  uid: 0cbd2ac8-97a6-45ff-9bd0-3fa61e22ec32
+data:
+  spring.data.mongodb.database: "kubemongo"
+  spring.data.mongodb.uri: "mongodb://${kube.datasource.mongodb.username}:${kube.datasource.mongodb.password}@mongohost.com:27017/?authSource=kubemongo&authMechanism=SCRAM-SHA-1"

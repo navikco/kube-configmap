@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: customers
+  profiles:
+    active: local
+
+logging:
+  file: /opt/mw/mount/logs/kube/${spring.application.name}/${spring.cloud.client.ip-address}/${spring.application.name}.log
+  config: /opt/mw/apps/kube/logback-spring.xml
+
+
+---
+
+spring:
+  profiles: ${spring.profiles.active}
+  cloud:
+    kubernetes:
+      config:
+        name: kube-${spring.profiles.active}-customers-config
+        sources:
+          # Spring Cloud Kubernetes looks up a ConfigMap named c3 in namespace n3
+          - namespace: kube-${spring.profiles.active}
+            name: ${spring.application.name}-config
+          - namespace: kube-{spring.profiles.active}
+            name: kube-ora-config
+          - namespace: kube-{spring.profiles.active}
+            name: kube-es-config
+          - namespace: kube-{spring.profiles.active}
+            name: kube-mongo-config
+      secrets:
+        name: kube-${spring.profiles.active}-accounts-secrets
+        sources:
+          # Spring Cloud Kubernetes looks up a Secret named s1 in namespace default-namespace
+          - namespace: kube-${spring.profiles.active}
+            name: kube-${spring.profiles.active}-secrets
+
+---
+
+spring:
+  profiles: local
+
+logging:
+  file: ./logs/\${spring.application.name}.log
+  config: ./src/main/resources/logback-spring.xml
+
+---
